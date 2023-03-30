@@ -19,6 +19,9 @@
     <modules>
         <module>producto-service</module>
         <module>order-service</module>
+        <module>inventario-service</module>
+        <module>discovery-server</module>
+
     </modules>
 
     <properties>
