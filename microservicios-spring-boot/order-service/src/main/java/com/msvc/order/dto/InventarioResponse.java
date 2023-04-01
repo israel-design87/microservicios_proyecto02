@@ -1,4 +1,4 @@
-package com.msvc.inventario.dto;
+package com.msvc.order.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class InventarioResponse {
-
     private String codigoSku;
-    private boolean inStock;
 
+    private Boolean isInStock;
 }

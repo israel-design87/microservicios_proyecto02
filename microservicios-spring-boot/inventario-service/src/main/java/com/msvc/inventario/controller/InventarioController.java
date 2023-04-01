@@ -8,18 +8,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-    @RestController
-    @RequestMapping("/api/inventario")
-    public class InventarioController {
+@RestController
+@RequestMapping("/api/inventario")
+public class InventarioController {
 
-        @Autowired
-        private InventarioService inventarioService;
+    @Autowired
+    private InventarioService inventarioService;
 
-        @GetMapping
-        @ResponseStatus(HttpStatus.OK)
-        public List<InventarioResponse> isInStock(@RequestParam List<String> codigoSku){
-            return inventarioService.isInStock(codigoSku);
-        }
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<InventarioResponse> isInStock(@RequestParam List<String> codigoSku){
+        return inventarioService.isInStock(codigoSku);
     }
-
-
+}
