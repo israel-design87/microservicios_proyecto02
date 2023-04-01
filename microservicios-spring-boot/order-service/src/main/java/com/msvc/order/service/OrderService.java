@@ -25,7 +25,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private WebClient webClient;
+    private WebClient.Builder webCliBuilder;
 
     public void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -42,14 +42,16 @@ public class OrderService {
                 .map(OrderLineItems::getCodigoSku)
                 .collect(Collectors.toList());
 
-        InventarioResponse[] inventarioResponseArray = webClient.get()
-                .uri("http://localhost:8082/api/inventario", uriBuilder -> uriBuilder.queryParam("codigoSku", codigoSku).build())
+        System.out.println("codigos sku : " + codigoSku);
+
+        InventarioResponse[] inventarioResponseArray = webCliBuilder.build().get()
+                .uri("http://inventario-service/api/inventario", uriBuilder -> uriBuilder.queryParam("codigoSku", codigoSku).build())
                 .retrieve()
                 .bodyToMono(InventarioResponse[].class)
                 .block();
 
         boolean allProductosInStock = Arrays.stream(inventarioResponseArray)
-                .allMatch(InventarioResponse::getIsInStock);
+                .allMatch(InventarioResponse::isInStock);
 
         if(allProductosInStock){
             orderRepository.save(order);
@@ -66,8 +68,8 @@ public class OrderService {
     private OrderLineItems mapToDto(OrderLineItemsDto orderLineItemsDto) {
         OrderLineItems orderLineItems = new OrderLineItems();
         orderLineItems.setPrecio(orderLineItemsDto.getPrecio());
-        orderLineItems.setCantidad(orderLineItems.getCantidad());
-        orderLineItems.setCodigoSku(orderLineItems.getCodigoSku());
+        orderLineItems.setCantidad(orderLineItemsDto.getCantidad());
+        orderLineItems.setCodigoSku(orderLineItemsDto.getCodigoSku());
 
         return orderLineItems;
 

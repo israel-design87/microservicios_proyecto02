@@ -7,15 +7,14 @@
 		<artifactId>microservicios-spring-boot</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.msvc.order</groupId>
-	<artifactId>order-service</artifactId>
+	<groupId>com.msvc.inventario</groupId>
+	<artifactId>inventario-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>order-service</name>
+	<name>inventario-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.5</spring-cloud.version>
-
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,10 +40,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
